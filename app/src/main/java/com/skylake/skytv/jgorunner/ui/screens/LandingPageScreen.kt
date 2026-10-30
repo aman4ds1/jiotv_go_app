@@ -60,6 +60,7 @@ import com.skylake.skytv.jgorunner.data.SkySharedPref
 import com.skylake.skytv.jgorunner.ui.tvhome.TvViewModel
 import com.skylake.skytv.jgorunner.ui.tvhome.components.TvScreenMenu
 import com.skylake.skytv.jgorunner.ui.tvhome.Main_Layout
+import com.skylake.skytv.jgorunner.ui.tvhome.Rows_Layout
 import com.skylake.skytv.jgorunner.ui.tvhome.Main_Layout_3rd
 import com.skylake.skytv.jgorunner.ui.tvhome.Recent_Layout
 import kotlinx.coroutines.launch
@@ -214,7 +215,7 @@ fun LandingPageScreen(context: Context, onNavigate: (String) -> Unit, onExit: ()
                     ) {
                         Main_Layout_3rd(context, reloadTrigger = 0)
                     } else {
-                        Main_Layout(context, reloadTrigger = 0)
+                        Rows_Layout(context, reloadTrigger = 0)
                     }
                 }
                 1 -> Recent_Layout(

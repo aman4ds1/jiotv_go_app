@@ -78,6 +78,7 @@ import com.skylake.skytv.jgorunner.R
 import com.skylake.skytv.jgorunner.data.SkySharedPref
 import com.skylake.skytv.jgorunner.ui.tvhome.Favorites_Layout
 import com.skylake.skytv.jgorunner.ui.tvhome.Main_Layout
+import com.skylake.skytv.jgorunner.ui.tvhome.Rows_Layout
 import com.skylake.skytv.jgorunner.ui.tvhome.Main_Layout_3rd
 import com.skylake.skytv.jgorunner.ui.tvhome.Recent_Layout
 import com.skylake.skytv.jgorunner.ui.tvhome.SearchTabLayout
@@ -302,7 +303,7 @@ fun ZoneScreen(context: Context, onNavigate: (String) -> Unit) {
             ) {
                 Main_Layout_3rd(context, reloadTrigger = reloadChannelsTrigger)
             } else if (!preferenceManager.myPrefs.showAllTabs) {
-                Main_Layout(context, reloadTrigger = reloadChannelsTrigger)
+                Rows_Layout(context, reloadTrigger = reloadChannelsTrigger)
             } else {
                 Column(
                     modifier = Modifier.fillMaxWidth(),
@@ -396,7 +397,7 @@ fun ZoneScreen(context: Context, onNavigate: (String) -> Unit) {
 
                     // Tab Content
                     when (selectedTabIndex) {
-                        0 -> Main_Layout(context, reloadTrigger = reloadChannelsTrigger)
+                        0 -> Rows_Layout(context, reloadTrigger = reloadChannelsTrigger)
                         1 -> Favorites_Layout(context, viewModel = tvViewModel, basefinURL = tvViewModel.basefinURL)
 //                        2 -> Recent_Layout(context, viewModel = tvViewModel, basefinURL = tvViewModel.basefinURL)
                         2 -> SearchTabLayout(context, tabFocusRequester, tvViewModel)
