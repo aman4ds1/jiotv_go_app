@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">PrismA TV</string>
-    <string name="app_id">com.skylake.skytv.jgorunner</string>
+    <string name="app_id">com.prismatv.gotv</string>
     <string name="widget_v1">PrismA TV Quick Start [with Logs] </string>
     <string name="widget_v2">PrismA TV Quick Start Material</string>
 </resources>
