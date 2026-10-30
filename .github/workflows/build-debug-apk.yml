@@ -1,0 +1,32 @@
+name: Build TV UI APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths: [ "app/src/**" ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: "18"
+          cache: gradle
+      - run: chmod +x ./gradlew
+      - run: ./gradlew :app:assembleDebug
+      - run: cp app/build/outputs/apk/debug/*.apk jtv-tv.apk
+      # Publishes a release so Fire TV's Downloader can fetch a direct link:
+      # https://github.com/<your-username>/jiotv_go_app/releases/latest/download/jtv-tv.apk
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: tv-build-${{ github.run_number }}
+          name: TV UI build ${{ github.run_number }}
+          make_latest: true
+          files: jtv-tv.apk
