@@ -79,7 +79,7 @@ private val customFontFamily = FontFamily(
 )
 
 @Composable
-fun HomeScreen(
+fun HomeScreenLegacy(
     title: String,
     titleShouldGlow: Boolean,
     isServerRunning: Boolean,

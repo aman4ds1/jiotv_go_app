@@ -154,7 +154,7 @@ fun LandingPageScreen(context: Context, onNavigate: (String) -> Unit, onExit: ()
                 }
 
                 Text(
-                    text = "JTV-GO",
+                    text = "PrismA TV",
                     fontSize = 12.sp,
                     fontFamily = customFontFamily,
                     color = MaterialTheme.colorScheme.onBackground,

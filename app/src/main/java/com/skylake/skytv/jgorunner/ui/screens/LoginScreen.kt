@@ -67,7 +67,7 @@ import java.util.concurrent.Executors
 import kotlin.random.Random
 
 @Composable
-fun LoginScreen(context: Context) {
+fun LoginScreenLegacy(context: Context) {
     val preferenceManager = SkySharedPref.getInstance(context)
     val scrollState = rememberScrollState()
 

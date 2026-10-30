@@ -68,7 +68,7 @@ fun InfoScreen(context: Context) {
 
 
     val deviceInfo = """
-        JTV-GO Version: $appVersion
+        PrismA TV version: $appVersion · based on JTV-GO Server (MIT)
         Binary Version: $binVersion
         -------------------------------
         IP Address: $ipAddress
@@ -87,7 +87,7 @@ fun InfoScreen(context: Context) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "JTV-GO Server",
+            text = "PrismA TV",
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 8.dp)

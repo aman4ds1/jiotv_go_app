@@ -171,7 +171,7 @@ fun ExtraScreen(context: Context, onNavigate: (String) -> Unit) {
     ) {
         item {
             Text(
-                text = "JTV-GO SERVER",
+                text = "PRISMA TV",
                 fontSize = 24.sp,
                 fontFamily = customFontFamily,
                 color = MaterialTheme.colorScheme.onBackground,

@@ -235,7 +235,7 @@ fun ZoneScreen(context: Context, onNavigate: (String) -> Unit) {
 
                 // CENTER: Title (Perfect Center)
                 Text(
-                    text = "JTV-GO",
+                    text = "PrismA TV",
                     fontSize = 12.sp,
                     fontFamily = customFontFamily,
                     color = MaterialTheme.colorScheme.onBackground,

@@ -38,7 +38,7 @@ fun PlaceHolderLoading() {
             ) {
 
                 Text(
-                    text = "JTV-GO",
+                    text = "PrismA TV",
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onBackground,
                 )

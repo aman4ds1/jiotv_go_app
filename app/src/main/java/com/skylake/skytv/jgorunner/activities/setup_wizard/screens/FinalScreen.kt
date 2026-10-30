@@ -50,7 +50,7 @@ fun FinalScreen(isDark: Boolean) {
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
-            text = "JTV-GO SERVER",
+            text = "PRISMA TV",
             fontSize = 24.sp,
             fontFamily = customFontFamily,
             color = MaterialTheme.colorScheme.onBackground,

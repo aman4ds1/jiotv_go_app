@@ -81,7 +81,7 @@ class ServerGlanceWidget : GlanceAppWidget() {
                 modifier = GlanceModifier.fillMaxWidth()
             ) {
                 Text(
-                    text = "JTV-Go Server",
+                    text = "PrismA TV",
                     style = TextStyle(
                         color = GlanceTheme.colors.onSurface,
                         fontSize = 18.sp,

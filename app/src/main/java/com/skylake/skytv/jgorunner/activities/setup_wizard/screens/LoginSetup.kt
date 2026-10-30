@@ -63,7 +63,7 @@ import java.net.URL
 import java.util.concurrent.Executors
 
 @Composable
-fun LoginSetup(
+fun LoginSetupLegacy(
     preferenceManager: SkySharedPref,
     isDark: Boolean,
     onCompleteStep: () -> Unit
@@ -538,4 +538,18 @@ private fun handleKeyEvent(event: KeyEvent, focusManager: FocusManager): Boolean
         }
     }
     return false
+}
+
+/** First-run sign-in step, in the PrismA TV style. */
+@Composable
+fun LoginSetup(
+    preferenceManager: SkySharedPref,
+    isDark: Boolean,
+    onCompleteStep: () -> Unit
+) {
+    com.skylake.skytv.jgorunner.ui.screens.PrismaSignIn(
+        context = androidx.compose.ui.platform.LocalContext.current,
+        onDone = onCompleteStep,
+        onSkip = onCompleteStep
+    )
 }
