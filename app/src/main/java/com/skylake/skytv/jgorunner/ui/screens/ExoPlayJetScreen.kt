@@ -170,6 +170,7 @@ fun ExoPlayJetScreen(
     val scope = rememberCoroutineScope()
     var numericJob: Job? by remember { mutableStateOf(null) }
     var isControllerVisible by remember { mutableStateOf(false) }
+    var showAvSettings by remember { mutableStateOf(false) }
 
     LaunchedEffect(currentChannelIndex) {
         val incoming = currentChannelIndex.coerceAtLeast(0)
@@ -255,6 +256,8 @@ fun ExoPlayJetScreen(
             onError = onError
         )
     }
+
+    LaunchedEffect(exoPlayer) { applySavedAvPrefs(context, exoPlayer) }
 
     DisposableEffect(exoPlayer) {
         val listener = object : Player.Listener {
@@ -491,6 +494,14 @@ fun ExoPlayJetScreen(
             .focusRequester(focusRequester)
             .focusable()
             .onPreviewKeyEvent { event ->
+                if (event.key == Key.Menu) {
+                    if (event.type == KeyEventType.KeyUp) {
+                        exoPlayerView?.hideController()
+                        showChannelPanel = false
+                        showAvSettings = true
+                    }
+                    return@onPreviewKeyEvent true
+                }
                 val isOkKey =
                     event.key == Key.DirectionCenter || event.key == Key.Enter || event.key == Key.NumPadEnter
                 if (event.type == KeyEventType.KeyDown && event.key == Key.DirectionLeft) {
@@ -754,6 +765,30 @@ fun ExoPlayJetScreen(
                                 layoutParams = params
                             }
 
+                            // Hide Media3's own gear (speed/audio only) - ours covers video + audio
+                            controller.findViewById<View>(androidx.media3.ui.R.id.exo_settings)?.visibility = View.GONE
+
+                            val avSettingsButton = ImageButton(context).apply {
+                                setBackgroundResource(android.R.color.transparent)
+                                setImageResource(androidx.media3.ui.R.drawable.exo_styled_controls_settings)
+                                contentDescription = "Video & Audio settings"
+                                imageAlpha = 230
+                                val pad = (4 * resources.displayMetrics.density).toInt()
+                                setPadding(pad, pad, pad, pad)
+                                isFocusable = true
+                                setOnClickListener {
+                                    exoPlayerView?.hideController()
+                                    showAvSettings = true
+                                }
+                                val params = LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT
+                                )
+                                params.gravity = Gravity.CENTER_VERTICAL
+                                params.marginStart = (8 * resources.displayMetrics.density).toInt()
+                                layoutParams = params
+                            }
+
                             val count = targetBar.childCount
                             val insertIndex = if (count > 0) count - 1 else count
                             if (!isTv && !isTV && supportsPip && pipEnabled) {
@@ -769,6 +804,12 @@ fun ExoPlayJetScreen(
                             } catch (e: Exception) {
                                 Log.w(TAG, "Failed to insert Resize button at index", e)
                                 targetBar.addView(resizeButton)
+                            }
+
+                            try {
+                                targetBar.addView(avSettingsButton)
+                            } catch (e: Exception) {
+                                Log.w(TAG, "Failed to insert Video & Audio button", e)
                             }
 
                             hookExoControllerButtons(findViewById(R.id.player_view),context)
@@ -794,6 +835,13 @@ fun ExoPlayJetScreen(
                     gapSize = 8.dp,
                     amplitude = 0.75f,
                 )
+            }
+        }
+
+        if (showAvSettings) {
+            AvSettingsDialog(player = exoPlayer) {
+                showAvSettings = false
+                runCatching { focusRequester.requestFocus() }
             }
         }
 
