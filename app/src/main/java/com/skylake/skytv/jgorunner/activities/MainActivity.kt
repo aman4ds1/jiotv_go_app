@@ -90,12 +90,15 @@ import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 
 
+/** PrismA TV is a separate app: don't offer the upstream app's updates. */
+private const val ENABLE_APP_SELF_UPDATE = false
+
 class MainActivity : FragmentActivity() {
     companion object {
         private const val TAG = "JTVGo::MainActivity"
     }
 
-    private var selectedBinaryName by mutableStateOf("JTV-GO SERVER")
+    private var selectedBinaryName by mutableStateOf("PRISMA TV")
     private lateinit var preferenceManager: SkySharedPref
 
     // SharedPreferences for saving binary selection
@@ -395,7 +398,7 @@ class MainActivity : FragmentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
-                        if (currentScreen != "Zone" && currentScreen != "OmniTv") {
+                        if (currentScreen != "Zone" && currentScreen != "OmniTv" && currentScreen != "Home" && currentScreen != "Login") {
                             BottomNavigationBar(
                                 currentScreen = currentScreen,
                                 setCurrentScreen = { currentScreen = it }
@@ -455,6 +458,7 @@ class MainActivity : FragmentActivity() {
                                 onOmniTvButtonClick = {
                                     currentScreen = "OmniTv"
                                 },
+                                onNavigate = { currentScreen = it },
                                 onExitButtonClick = {
                                     stopBinary(
                                         context = this@MainActivity,
@@ -768,7 +772,7 @@ class MainActivity : FragmentActivity() {
 
             val currentAppVersion = BuildConfig.VERSION_NAME
             val latestAppVersion = ApplicationUpdater.fetchLatestReleaseInfo()
-            if (latestAppVersion?.version?.compareTo(SemanticVersionNew.parse(currentAppVersion)) == 1) {
+            if (ENABLE_APP_SELF_UPDATE && latestAppVersion?.version?.compareTo(SemanticVersionNew.parse(currentAppVersion)) == 1) {
                 showAppUpdatePopup = true
                 Log.d("JGX", "App update available")
             } else {

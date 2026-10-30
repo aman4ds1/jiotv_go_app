@@ -70,7 +70,7 @@ fun RunnerScreen(context: Context) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "### JTV-GO Server ###",
+            text = "### PrismA TV server ###",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 8.dp)

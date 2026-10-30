@@ -63,7 +63,7 @@ import kotlinx.coroutines.delay
  * row you launched from (e.g. only News channels).
  */
 
-private val Gold = Color(0xFFFFD700)
+private val Gold = Color(0xFFE6EBF0) // silver focus (was yellow)
 
 private val CATEGORY_ORDER = listOf(
     12 to "News", 5 to "Entertainment", 6 to "Movies", 8 to "Sports",
@@ -395,11 +395,13 @@ private fun ChannelTile(
                 .height(100.dp)
                 .clip(RoundedCornerShape(14.dp))
                 .background(
-                    if (focused) Color.White else MaterialTheme.colorScheme.surfaceVariant
+                    if (focused) Color(0xFF2A2D35) else MaterialTheme.colorScheme.surfaceVariant
                 )
                 .border(
-                    BorderStroke(if (focused) 3.dp else 0.dp, if (focused) Gold else Color.Transparent),
-                    RoundedCornerShape(14.dp)
+                    width = if (focused) 3.dp else 0.dp,
+                    brush = if (focused) com.skylake.skytv.jgorunner.ui.screens.Prisma.Chrome
+                            else androidx.compose.ui.graphics.SolidColor(Color.Transparent),
+                    shape = RoundedCornerShape(14.dp)
                 )
         ) {
             GlideImage(

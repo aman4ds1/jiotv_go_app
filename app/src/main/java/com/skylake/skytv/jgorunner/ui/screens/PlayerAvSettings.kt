@@ -44,7 +44,7 @@ private const val AV_PREFS = "player_av"
 private const val KEY_MAX_HEIGHT = "max_height"   // 0 = Auto
 private const val KEY_AUDIO_LANG = "audio_lang"   // null = channel default
 
-private val Gold = Color(0xFFFFD700)
+private val Gold = Color(0xFFE6EBF0) // silver focus (was yellow)
 
 /** Call once after the player is created. */
 fun applySavedAvPrefs(context: Context, player: Player) {

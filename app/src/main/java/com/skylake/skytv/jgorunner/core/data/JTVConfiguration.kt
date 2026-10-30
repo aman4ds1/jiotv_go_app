@@ -19,7 +19,7 @@ data class JTVConfiguration(
     var drm: Boolean = true,
 
     @SerializedName("title")
-    var title: String = "JTV-GO",
+    var title: String = "PrismA TV",
 
     @SerializedName("disable_url_encryption")
     var disableUrlEncryption: Boolean = false,

@@ -43,7 +43,7 @@ fun JTVModeSelectorPopup(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "JTV-Go Operation Mode",
+                        text = "PrismA TV operation mode",
                         modifier = Modifier.padding(bottom = 8.dp),
                         style = MaterialTheme.typography.bodyLarge
                     )
