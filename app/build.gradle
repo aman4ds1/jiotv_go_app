@@ -13,7 +13,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId 'com.skylake.skytv.jgorunner'
+        applicationId 'com.prisma.gotv'
         minSdk 21
 
         // Required for binary execution
